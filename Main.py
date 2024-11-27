@@ -3,12 +3,19 @@ from email.message import EmailMessage
 from tkinter import *
 
 
+'''def save():
+    with open("save.txt", "W") as file:
+        file.write(sender_email_entry.get() + "\n")
+        file.write()'''
+
+
+
 def send_email():
-    sender_email = "ororlovv@mail.ru"
-    recipient_mail = "ismdag@mail.ru"
-    password = "F8cRM4iEk01YBWv1itCS"
-    subject = "Проверка связи"
-    body = "Привет из программы на Питоне"
+    sender_email = sender_email_entry.get()
+    recipient_mail = recipient_email_entry.get()
+    password = password_entry.get()
+    subject = subject_entry.get()
+    body = body_text.get(1/0, END)
 
     msg = EmailMessage()
     msg.set_content(body)
