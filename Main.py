@@ -4,19 +4,20 @@ from tkinter import *
 
 
 def save():
-    with open("save.txt", "W") as file:
+    with open("save.txt", "w") as file:
         file.write(sender_email_entry.get() + "\n")
         file.write(recipient_email_entry.get() + "\n")
-        file.write( password_entry.get() + "\n")
+        file.write(password_entry.get() + "\n")
 
 
 def load ():
     try:
         with open("save.txt", "r") as file:
             info = file.readlines()
-            sender_email_entry.insert(0, info[0])
-            recipient_email_entry.insert(0, info[1])
-            password_entry.insert(0, info[2])
+            sender_email_entry.insert(0, info[0].strip())
+            recipient_email_entry.insert(0, info[1].strip())
+            password_entry.insert(0, info[2].strip())
+
     except FileNotFoundError:
         pass
 
@@ -24,16 +25,16 @@ def load ():
 def send_email():
     save()
     sender_email = sender_email_entry.get()
-    recipient_mail = recipient_email_entry.get()
+    recipient_email = recipient_email_entry.get()
     password = password_entry.get()
     subject = subject_entry.get()
-    body = body_text.get(1/0, END)
+    body = body_text.get(1.0, END)
 
     msg = EmailMessage()
     msg.set_content(body)
     msg["Subject"] = subject
     msg["From"] = sender_email
-    msg["To"] = recipient_mail
+    msg["To"] = recipient_email
 
     server = None
 
